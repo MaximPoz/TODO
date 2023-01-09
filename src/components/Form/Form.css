@@ -1,0 +1,22 @@
+.form{
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+    padding: 10px 0 10px 0;
+    background-color: palegreen;
+}
+
+
+.input{
+    width: 95%;
+    padding: 5px;
+    border-radius: 5px;
+    font-style: 20px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    box-shadow: 2px;
+}
+
+
+
