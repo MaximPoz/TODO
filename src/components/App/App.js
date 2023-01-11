@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import Form from '../Form/Form';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -15,22 +16,24 @@ function App() {
 
   const putTodo = (value) => {
     if (value) {
-      setTodos([...todos, { id: Date.now(), text: value, done: false }])
+      setTodos([...todos, { id: uuidv4(), text: value, done: false }])
       setAllTodos(allTodos + 1)
     } else {
       alert("Add text!!!")
+      
     }
   }
 
   const toggleTodo = (id) => {
     setTodos(todos.map(todo => {
       if (todo.id !== id) return todo;
+      console.log(todo.id, id);
+     
       setAllComplete(todos.filter(todo => todo.done === true).length+1)
       return {
         ...todo,
         done: !todo.done
       }
-      
     }))
   }
 
@@ -63,7 +66,8 @@ function App() {
               return (
                 <li className={todo.done ? "todo done" : "todo"} key={todo.id} onClick={() => toggleTodo(todo.id)}>
                   {todo.text}
-                  <img src="./delete.png" alt="delete" className='delete' onClick={e => {
+                  <img src="https://cdn.onlinewebfonts.com/svg/download_567411.png" alt="delete" className='delete' 
+                  onClick={e => {
                     e.stopPropagation();
                     removeTodo(todo.id);
                   }} />
@@ -78,7 +82,6 @@ function App() {
           </div>
         </ul>
       </div>
-
     </div>
   );
 }
